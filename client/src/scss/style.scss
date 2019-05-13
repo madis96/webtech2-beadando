@@ -1,0 +1,124 @@
+$icon-font-path: "../../node_modules/bootstrap-sass/assets/fonts/bootstrap/";
+@import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+.myTopMenu {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+
+  .menuButton{
+    float: left;
+
+    NavLink:hover{
+      text-decoration: none;
+    }
+
+    .menuButtonTitle{
+      display: block;
+      color: greenyellow;
+      text-align: center;
+      padding: 14px 16px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+  }
+
+  .menuButton:hover{
+    background-color: lawngreen;
+    border-radius: 10px;
+
+    .menuButtonTitle{
+      color: black;
+    }
+  }
+}
+
+body{
+  background-color: greenyellow;
+}
+
+.authorTile{
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  background-color:lawngreen;
+  color:black;
+}
+
+.orderList{
+  text-align: center;
+  border: 2px solid black;
+  overflow:hidden;
+
+  .orderListTitle{
+    font-size: 17px;
+    font-weight: bold;
+    border: 2px solid black;
+    background-color: #333;
+    color: lawngreen;
+  }
+
+  .orderListElements{
+    border: 1px solid black;
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+    button{
+      height: 25px;
+    }
+
+    .orderListElement{
+      input{
+        width: 100%;
+      }
+    }
+  }
+
+  .orderListElements:hover{
+    background-color: lightgrey;
+  }
+}
+
+.formContainer{
+  border: 1pt solid black;
+  padding-top: 2%;
+  margin-left: 25%;
+  margin-right: 25%;
+}
+
+.statisticContainer{
+  border: 1pt solid black;
+  margin-bottom: 15px;
+  overflow: hidden;
+
+  .statisticTitle{
+    letter-spacing: 2px;
+    border-bottom: 1px solid black;
+  }
+
+  .statisticElement{
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  .statisticElement:not(:nth-last-child(1)){
+    border-bottom: 1px dotted black;
+  }
+}
+
+.informationContainer{
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 25%;
+  margin-right: 25%;
+  border: 1px dashed black;
+
+  .informationTitle{
+    size: 16px;
+    font-weight: bold;
+    border-bottom: 1px solid black;
+  }
+}
+

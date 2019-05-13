@@ -1,0 +1,137 @@
+[{
+	"_id" : {
+		"$oid" : "5cd11b3e8db6231c6b783cb2"
+	},
+	"id" : 1,
+	"customer" : {
+		"name" : "Kiss Mihály",
+		"address" : "8000 Székesfehérvár Középszer utca 10."
+	},
+	"shutter" : {
+		"width" : 70,
+		"height" : 150,
+		"parts" : {
+			"board" : 30,
+			"connector" : 15,
+			"rope" : 1
+		},
+		"isFinished" : true,
+		"price": 32500,
+		"isPaid": true
+	},
+	"orderDate" : "2018-02-20T10:52:34.211Z",
+	"lastModified": "2018-03-04T13:12:34.211Z"
+},
+{
+	"_id" : {
+		"$oid" : "5cd11b3e8db6231c6b783cb3"
+	},
+	"id" : 2,
+	"customer" : {
+		"name" : "Nagy Mária",
+		"address" : "3515 Miskolc Kossuth tér 43/a"
+	},
+	"shutter" : {
+		"width" : 90,
+		"height" : 200,
+		"parts" : {
+			"board" : 51,
+			"connector" : 26,
+			"rope" : 2
+		},
+		"isFinished" : true
+	},
+	"orderDate" : "2018-03-21T17:34:12.211Z",
+	"lastModified": "2018-03-30T18:38:44.211Z"
+},
+{
+	"_id" : {
+		"$oid" : "5cd11b3e8db6231c6b783cb4"
+	},
+	"id" : 3,
+	"customer" : {
+		"name" : "Mező Gábor",
+		"address" : "4000 Debrecen Csapó utca 31"
+	},
+	"shutter" : {
+		"width" : 70,
+		"height" : 150,
+		"parts" : {
+			"board" : 51,
+			"connector" : 26,
+			"rope" : 2
+		},
+		"isFinished" : true,
+		"price" : 23550,
+		"isPaid" : false
+	},
+	"orderDate" : "2019-01-12T10:45:34.211Z",
+	"lastModified": "2019-01-21T10:38:44.211Z"
+},
+{
+	"_id" : {
+		"$oid" : "5cd13f5b8db6231c6b783cb5"
+	},
+	"id" : 4,
+	"customer" : {
+		"name" : "Kaposvári András",
+		"address" : "4000 Debrecen Csapó utca 31"
+	},
+	"shutter" : {
+		"width" : 450,
+		"height" : 200,
+		"parts" : {
+			"board" : 29,
+			"connector" : 15,
+			"rope" : 10
+		},
+		"isFinished" : false
+	},
+	"orderDate" : "2019-05-09T10:52:34.211Z",
+	"lastModified": "2019-05-09T10:52:34.211Z"
+},
+{
+	"_id" : {
+		"$oid" : "5cd13f5b8db6231c6b783cb6"
+	},
+	"id" : 5,
+	"customer" : {
+		"name" : "Kiss Mihály",
+		"address" : "8000 Székesfehérvár Középszer utca 10."
+	},
+	"shutter" : {
+		"width" : 70,
+		"height" : 150,
+		"parts" : {
+			"board" : 51,
+			"connector" : 26,
+			"rope" : 2
+		},
+		"isFinished" : false
+	},
+	"orderDate" : "2019-05-10T15:43:34.211Z",
+	"lastModified": "2019-05-10T15:43:34.211Z"
+},
+{
+	"_id" : {
+		"$oid" : "5cd13f5b8db6231c6b783cb7"
+	},
+	"id" : 5,
+	"customer" : {
+		"name" : "Kiss Mihály",
+		"address" : "8000 Székesfehérvár Középszer utca 12/b"
+	},
+	"shutter" : {
+		"width" : 450,
+		"height" : 200,
+		"parts" : {
+			"board" : 29,
+			"connector" : 15,
+			"rope" : 10
+		},
+		"isFinished" : false
+	},
+	"orderDate" : "2019-05-11T15:43:34.211Z",
+	"lastModified": "2019-05-11T15:43:34.211Z"
+}
+]
