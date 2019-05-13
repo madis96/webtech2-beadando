@@ -87,8 +87,8 @@
 		},
 		"isFinished" : false
 	},
-	"orderDate" : "2019-05-09T10:52:34.211Z",
-	"lastModified": "2019-05-09T10:52:34.211Z"
+	"orderDate" : "2019-04-09T10:52:34.211Z",
+	"lastModified": "2019-04-09T10:52:34.211Z"
 },
 {
 	"_id" : {
@@ -116,7 +116,7 @@
 	"_id" : {
 		"$oid" : "5cd13f5b8db6231c6b783cb7"
 	},
-	"id" : 5,
+	"id" : 6,
 	"customer" : {
 		"name" : "Kiss Mihály",
 		"address" : "8000 Székesfehérvár Középszer utca 12/b"
