@@ -4,8 +4,6 @@ var router = express.Router();
 var CustomerOrderService = require("./customerOrderService");
 const customerOrderService = new CustomerOrderService();
 
-const customerModel = require("./models/customer");
-const shutterModel = require("./models/shutter");
 const orderModel = require("./models/order");
 
 router.get('/listAllOrders', (req, res) =>{
@@ -15,22 +13,22 @@ router.get('/listAllOrders', (req, res) =>{
 });
 
 router.post('/listOwnOrders', (req, res) =>{
-  /*if(req.body['name'] === undefined ||
+  if(req.body['name'] === undefined ||
       req.body['name'] === "" ||
       typeof req.body['name'] !== 'string'){
           res.status(414).send("Error(listOwnOrders): Name is invalid!")
           return
-  }*/
+  }
   if(req.body['name'] === undefined){
-      res.status(415).send(req.body)
+      res.status(415).send(req.body);
       return
   }
   if(req.body['name'] === ""){
-      res.status(416).send("Empty")
+      res.status(416).send("Empty");
       return
   }
   if(typeof req.body['name'] !== 'string'){
-      res.status(417).send("Not string")
+      res.status(417).send("Not string");
       return
   }
   customerOrderService.listOwnOrders(req.body['name'], (orders)=>{
@@ -103,7 +101,7 @@ router.post('/addOrder', (req, res) =>{
         });
     } catch (error){
         res.status(400).send(error);
-        return;
+
     }
 });
 

@@ -55,22 +55,18 @@ export class ListOrders extends Component {
                     <h3>
                         {this.props.customerData.name}'s order(s)
                     </h3>
-                    {
-                        this.props.ownOrders.length === 0 &&
-                        <div className="row">
-                            Sorry, you don't have any orders yet.
-                        </div>
-                    }
                 </div>
                 {this.props.ownOrders.length === 0 ?
-                    <div/>
+                    <div className="row">
+                        Sorry, you don't have any orders yet.
+                    </div>
                     :
                     <div className="row orderList">
                         <div className="row orderListTitle">
                             <div className="col-md-1 orderListElement">ID</div>
                             <div className="col-md-2 orderListElement">Name</div>
                             <div className="col-md-4 orderListElement">Address</div>
-                            <div className="col-md-2 orderListElement">Shutter sizes (w x h)</div>
+                            <div className="col-md-2 orderListElement">Number of shutters</div>
                             <div className="col-md-1 orderListElement">Status</div>
                             <div className="col-md-1 orderListElement">Price</div>
                             <div className="col-md-1 orderListElement">Pay</div>
@@ -78,30 +74,30 @@ export class ListOrders extends Component {
                         {
                             this.props.ownOrders.map((order, i) =>
                                 <div key={i}>
-                                <div className="row orderListElements" onClick={() => this.setSelectedOrder(order.id)}>
-                                    <div className="col-md-1 orderListElement">{i + 1}</div>
+                                <div className="row orderListElements">
+                                    <div className="col-md-1 orderListElement" onClick={() => this.setSelectedOrder(order.id)}>{i + 1}</div>
                                     <div className="col-md-2 orderListElement">{order.customer.name}</div>
                                     <div className="col-md-4 orderListElement">{order.customer.address}</div>
                                     <div
                                         className="col-md-2 orderListElement">
-                                        {order.shutter.width}mm x {order.shutter.height}mm</div>
+                                        {order.shutter.length}</div>
                                     <div className="col-md-1 orderListElement">
-                                        {order.shutter.isPaid ?
+                                        {order.isPaid ?
                                             "Paid"
-                                            : order.shutter.isFinished ?
+                                            : order.isFinished ?
                                                 "Assemblied"
                                                 : "Ordered"
                                         }
                                     </div>
                                     <div className="col-md-1 orderListElement">
-                                        {order.shutter.price > 0 ?
-                                            this.makePriceFromInt(order.shutter.price)
+                                        {order.price > 0 ?
+                                            this.makePriceFromInt(order.price)
                                             : "-"
                                         }
                                     </div>
                                     <div className="col-md-1 orderListElement">
-                                        {order.shutter.price > 0 ?
-                                            order.shutter.isPaid ? "Success" : <button onClick={()=> this.props.payOrder(order.id)}>Pay</button>
+                                        {order.price > 0 ?
+                                            order.isPaid ? "Success" : <button onClick={()=> this.props.payOrder(order.id)}>Pay</button>
                                             : "No invoice"
                                         }
                                     </div>
@@ -110,30 +106,17 @@ export class ListOrders extends Component {
                                         <div className="row" onClick={() => this.setSelectedOrder(order.id)}>
                                             <div className="informationContainer">
                                                 <div className="informationTitle">Order informations</div>
-                                                <div className="row informationElement">
-                                                    <div className="col-md-6">Ordered:</div>
-                                                    <div className="col-md-6">
-                                                        {this.getDate(order.orderDate)} ({this.calculateDate(order.orderDate)} day(s) ago)
-                                                    </div>
+                                                <div className="row informationElements">
+                                                    <div className="col-md-6">ID</div>
+                                                    <div className="col-md-6">sizes</div>
                                                 </div>
-                                                <div className="row informationElement">
-                                                    <div className="col-md-6"></div>
-                                                    <div className="col-md-6">
-                                                        {this.getTime(order.orderDate)}
-                                                    </div>
-                                                </div>
-                                                <div className="row informationElement">
-                                                    <div className="col-md-6">Last modified:</div>
-                                                    <div className="col-md-6">
-                                                        {this.getDate(order.lastModified)} ({this.calculateDate(order.lastModified)} day(s) ago)
-                                                    </div>
-                                                </div>
-                                                <div className="row informationElement">
-                                                    <div className="col-md-6"></div>
-                                                    <div className="col-md-6">
-                                                        {this.getTime(order.lastModified)}
-                                                    </div>
-                                                </div>
+                                                {order.shutter.map((orders, j) =>
+                                                    <div key={j}>
+                                                        <div className="row informationElements">
+                                                            <div className="col-md-6">{j+1}</div>
+                                                            <div className="col-md-6">{orders.width}mm x {orders.height}mm</div>
+                                                        </div>
+                                                    </div>)}
                                             </div>
                                         </div>
                                         : <div/>

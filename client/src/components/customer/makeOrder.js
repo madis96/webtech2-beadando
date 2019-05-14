@@ -1,48 +1,53 @@
 import React, { Component } from "react";
+import OrderCartActions from './../../services/OrderCartActions'
+import OrderCartStore from "../../services/OrderCartStore";
+import {ListCart} from "./listCart"
 
 export class MakeOrder extends Component {
 
-    constructor(props) {
-        super(props);
+constructor(props) {
+    super(props);
 
-        this.state = {
-            order:{
-                customer: {
-                    name: this.props.customerData.name,
-                    address: ""
-                },
-                shutter: {
-                    width : 0,
-                    height: 0
-                }
+    this.onOrderCartChange = this.onOrderCartChange.bind(this);
+
+    this.state = {
+        shutters:[],
+        cart:[],
+        order: {
+            customer: {
+                name: this.props.customerData.name,
+                address: this.props.customerData.address
             },
-            error:{
-                customer: {
-                    name: undefined,
-                    address: undefined
-                },
-                shutter: {
-                    width : undefined,
-                    height: undefined
-                }
+            shutter: {
+                width: 0,
+                height: 0
             }
-        };
-    }
-
-    handleAddressChange = (event) => {
-        const newValue = event.target.value;
-        this.setState((prevState) => ({
-                ...prevState,
-                order: {
-                    ...prevState.order,
-                    customer: {
-                        ...prevState.order.customer,
-                        address: newValue
-                    }
-                }
-            })
-        )
+        },
+        error: {
+            customer: {
+                name: undefined,
+                address: undefined
+            },
+            shutter: {
+                width: undefined,
+                hegiht: undefined
+            }
+        }
     };
+
+}
+
+onOrderCartChange(){
+    this.setState({cart : OrderCartStore.getItems()});
+}
+
+componentDidMount(){
+    OrderCartStore.addChangeListener(this.onOrderCartChange)
+}
+
+componentWillUnmount(){
+    OrderCartStore.removeChangeListener(this.onOrderCartChange)
+}
 
     handleWidthChange = (event) => {
         const newValue = event.target.value;
@@ -52,7 +57,7 @@ export class MakeOrder extends Component {
                 ...prevState.order,
                 shutter:{
                     ...prevState.order.shutter,
-                    width: newValue
+                    width: parseInt(newValue)
                 }
             }
         }))
@@ -66,7 +71,7 @@ export class MakeOrder extends Component {
                 ...prevState.order,
                 shutter:{
                     ...prevState.order.shutter,
-                    height: newValue
+                    height: parseInt(newValue)
                 }
             }
         }))
@@ -140,59 +145,31 @@ export class MakeOrder extends Component {
         }
     };
 
-    validateAddress = () => {
-        if(this.state.order.customer.address === "") {
-            this.setState((prevState) => (
-                {
-                    ...prevState,
-                    error: {
-                        ...prevState.error,
-                        customer: {
-                            ...prevState.error.customer,
-                            address: true
-                        }
-                    }
-                }
-            ));
-
-            return false;
-        } else {
-            this.setState((prevState) => (
-                {
-                    ...prevState,
-                    error: {
-                        ...prevState.error,
-                        customer: {
-                            ...prevState.error.customer,
-                            address: false
-                        }
-                    }
-                }
-            ));
-
-            return true;
-        }
-    };
-
     validateForm = () => {
         let isValid = true;
 
-        isValid = this.validateAddress() && isValid;
         isValid = this.validateWidth() && isValid;
         isValid = this.validateHeight() && isValid;
 
         return isValid;
     };
 
+    removeFunction = (index) => {
+
+        this.state.shutters.splice(index, 1);
+    };
+
     saveForm = (event) => {
         event.preventDefault();
         if (this.validateForm()) {
-            this.props.addOrder(this.state.order);
+            OrderCartActions.insertItem(this.state.order.shutter);
+            this.addNewShutter(this.state.order.shutter);
+            //this.props.addOrder(this.state.order);
             this.setState({
                 order: {
                     customer: {
                         name: this.props.customerData.name,
-                        address: ""
+                        address: this.props.customerData.address
                     },
                     shutter: {
                         width: 0,
@@ -213,89 +190,88 @@ export class MakeOrder extends Component {
         }
     };
 
+    addNewShutter = (data) => {
+        this.setState((prevState) => ({
+            ...prevState,
+            shutters: [
+                ...prevState.shutters,
+                data
+            ]
+        }));
+    };
+
+    setShutters = () => {
+        this.setState(this.state.shutters = [])
+    };
 
 
-    render() {
-        return (
-            <div className="formContainer">
-            <form className="form-horizontal"  onSubmit={(e) => this.saveForm(e)}>
-                <div
-                    className={ this.state.error.customer.address === true
-                        ? "form-group has-error"
-                        : this.state.error.customer.address === false
-                            ? "form-group has-success"
-                            : "form-group"
-                    }
-                >
-                    <div>
-                        <label className="control-label col-md-5">Address:</label>
-                        <div className="col-md-4">
-                            <input
-                                id="address"
-                                type="text"
-                                name="address"
-                                placeholder="Enter your address"
-                                value={this.state.order.customer.address}
-                                onChange={this.handleAddressChange}
-                                className={"form-control"}
-                            />
+render() {
+    return (
+            <div>
+                <ListCart
+                    cart={this.state.cart}
+                    user={this.props.customerData}
+                    addOrder={this.props.addOrder}
+                    shutters={this.state.shutters}
+                    setShutters={this.setShutters}
+                    removeFunction={this.removeFunction}
+                />
+                <div className="formContainer">
+                    <form className="form-horizontal"  onSubmit={(e) => this.saveForm(e)}>
+                        <div
+                            className={ this.state.error.shutter.width === true
+                                ? "form-group has-error"
+                                : this.state.error.shutter.width === false
+                                    ? "form-group has-success"
+                                    : "form-group"
+                            }
+                        >
+                            <div>
+                                <label className="control-label col-md-5">Width:</label>
+                                <div className="col-md-4">
+                                    <input
+                                        id="width"
+                                        type="number"
+                                        name="width"
+                                        value={this.state.order.shutter.width}
+                                        onChange={this.handleWidthChange}
+                                        className="form-control"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div
+                            className={ this.state.error.shutter.height === true
+                                ? "form-group has-error"
+                                : this.state.error.shutter.height === false
+                                    ? "form-group has-success"
+                                    : "form-group"
+                            }
+                        >
+                            <div>
+                                <label className="control-label col-md-5">Height:</label>
+                                <div className="col-md-4">
+                                    <input
+                                        id="height"
+                                        type="number"
+                                        name="height"
+                                        value={this.state.order.shutter.height}
+                                        onChange={this.handleHeightChange}
+                                        className="form-control"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+
+                    <div className="form-group">
+                        <div className="col-md-12">
+                            <button type="submit" className="btn btn-primary">Add to cart</button>
                         </div>
                     </div>
+                    </form>
                 </div>
-
-                <div
-                    className={ this.state.error.shutter.width === true
-                        ? "form-group has-error"
-                        : this.state.error.shutter.width === false
-                            ? "form-group has-success"
-                            : "form-group"
-                    }
-                >
-                    <div>
-                        <label className="control-label col-md-5">Width:</label>
-                        <div className="col-md-4">
-                            <input
-                                id="width"
-                                type="number"
-                                name="width"
-                                value={this.state.order.shutter.width}
-                                onChange={this.handleWidthChange}
-                                className="form-control"
-                                />
-                        </div>
-                    </div>
-                </div>
-
-                <div
-                    className={ this.state.error.shutter.height === true
-                        ? "form-group has-error"
-                        : this.state.error.shutter.height === false
-                            ? "form-group has-success"
-                            : "form-group"
-                    }
-                >
-                    <div>
-                        <label className="control-label col-md-5">Height:</label>
-                        <div className="col-md-4">
-                            <input
-                                id="height"
-                                type="number"
-                                name="height"
-                                value={this.state.order.shutter.height}
-                                onChange={this.handleHeightChange}
-                                className="form-control"
-                            />
-                        </div>
-                    </div>
-                </div>
-
-                <div className="form-group">
-                    <div className="col-md-12">
-                        <button type="submit" className="btn btn-primary">Add order</button>
-                    </div>
-                </div>
-            </form>
             </div>
-        )
-    }
+    )
+}
 }

@@ -16,7 +16,6 @@ async function listOrders(parameters, successCallback, errorCallback) {
 
             successCallback(orders)
         } catch (error) {
-            errorCallback("" + error);
         }
     });
 }
@@ -30,7 +29,7 @@ function listOwnOrders(customerName, callback){
 }
 
 function listOpenOrders(callback){
-    listOrders({"shutter.isFinished":{$ne: true}}, (result) => {callback(result)})
+    listOrders({"isFinished":{$ne: true}}, (result) => {callback(result)})
 }
 
 async function payOrder(order, successCallback, errorCallback) {
@@ -39,7 +38,7 @@ async function payOrder(order, successCallback, errorCallback) {
 
     collection.updateOne(
         {"id": order.orderId},
-        {$set: {"shutter.isPaid": true, "lastModified" : order.lastModified}},
+        {$set: {"isPaid": true, "lastModified" : order.lastModified}},
         (err, response) => {
             try {
                 assert.equal(null, err, err);
@@ -58,7 +57,7 @@ async function createInvoice(order, successCallback, errorCallback) {
 
     collection.updateOne(
         {"id" : order.orderId},
-        {$set: {"shutter.price" : order.price, "lastModified" : order.lastModified}},
+        {$set: {"price" : order.price, "lastModified" : order.lastModified}},
         (err, response) => {
             try {
                 assert.equal(null, err, err);
@@ -79,7 +78,7 @@ async function finishOrder(order, successCallback, errorCallback) {
 
     collection.updateOne(
         {"id" : order.orderId},
-        {$set: {"shutter.isFinished" : true, "lastModified" : order.lastModified}},
+        {$set: {"isFinished" : true, "lastModified" : order.lastModified}},
         (err, response) => {
             try {
                 assert.equal(null, err, err);

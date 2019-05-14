@@ -7,15 +7,30 @@ export class LoginForm extends Component {
 
         this.state = {
             customer: {
-                name: ""
+                name: "",
+                address: "",
             },
             error: {
                 customer: {
-                    name: undefined
+                    name: undefined,
+                    address: undefined
                 }
             }
         };
     }
+
+    handleAddressChange = (event) => {
+        const newValue = event.target.value;
+        this.setState((prevState) => ({
+                ...prevState,
+                customer: {
+                    ...prevState.customer,
+                    address: newValue
+                }
+            }),
+            () => this.validateAddress()
+        )
+    };
 
     handleNameChange = (event) => {
         const newValue = event.target.value;
@@ -64,10 +79,45 @@ export class LoginForm extends Component {
         }
     };
 
+    validateAddress = () => {
+        if(this.state.customer.address === "") {
+            this.setState((prevState) => (
+                {
+                    ...prevState,
+                    error: {
+                        ...prevState.error,
+                        customer: {
+                            ...prevState.error.customer,
+                            address: true
+                        }
+                    }
+                }
+            ));
+
+            return false;
+        } else {
+            this.setState((prevState) => (
+                {
+                    ...prevState,
+                    error: {
+                        ...prevState.error,
+                        customer: {
+                            ...prevState.error.customer,
+                            address: false
+                        }
+                    }
+                }
+            ));
+
+            return true;
+        }
+    };
+
     validateForm = () => {
         let isValid = true;
 
         isValid = this.validateName() && isValid;
+        isValid = this.validateAddress() && isValid;
 
         return isValid;
     };
@@ -101,6 +151,30 @@ export class LoginForm extends Component {
                                 placeholder="Enter name"
                                 value={this.state.customer.name}
                                 onChange={this.handleNameChange}
+                                className={"form-control"}
+                            />
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    className={ this.state.error.customer.address === true
+                        ? "form-group has-error"
+                        : this.state.error.customer.address === false
+                            ? "form-group has-success"
+                            : "form-group"
+                    }
+                >
+                    <div>
+                        <label className="control-label col-md-5">Address:</label>
+                        <div className="col-md-2">
+                            <input
+                                id="address"
+                                type="text"
+                                name="address"
+                                placeholder="Enter address"
+                                value={this.state.customer.address}
+                                onChange={this.handleAddressChange}
                                 className={"form-control"}
                             />
                         </div>

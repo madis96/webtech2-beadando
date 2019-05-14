@@ -6,9 +6,9 @@ export class StatisticContainer extends Component {
         var totalIncome = 0;
         // eslint-disable-next-line
         this.props.allOrders.map((order, i) => {
-            if(order.shutter.price > 0)
+            if(order.price > 0)
             {
-                totalIncome = totalIncome + order.shutter.price;
+                totalIncome = totalIncome + order.price;
             }
         });
         return this.makePriceFromInt(totalIncome);
@@ -18,9 +18,9 @@ export class StatisticContainer extends Component {
         var currentlyPaid = 0;
         // eslint-disable-next-line
         this.props.allOrders.map((order, i) => {
-            if(order.shutter.isPaid)
+            if(order.isPaid)
             {
-                currentlyPaid = currentlyPaid + order.shutter.price;
+                currentlyPaid = currentlyPaid + order.price;
             }
         });
         return this.makePriceFromInt(currentlyPaid);
@@ -30,9 +30,9 @@ export class StatisticContainer extends Component {
         var pendingIncome = 0;
         // eslint-disable-next-line
         this.props.allOrders.map((order, i) => {
-            if(!order.shutter.isPaid && order.shutter.price > 0)
+            if(!order.isPaid && order.price > 0)
             {
-                pendingIncome = pendingIncome + order.shutter.price;
+                pendingIncome = pendingIncome + order.price;
             }
         });
         return this.makePriceFromInt(pendingIncome);
@@ -46,9 +46,9 @@ export class StatisticContainer extends Component {
         var biggestPrice = 0;
         // eslint-disable-next-line
         this.props.allOrders.map((order, i) => {
-            if(order.shutter.price > biggestPrice)
+            if(order.price > biggestPrice)
             {
-                biggestPrice = order.shutter.price;
+                biggestPrice = order.price;
             }
         });
         return biggestPrice;
@@ -62,9 +62,9 @@ export class StatisticContainer extends Component {
         var lowestPrice = this.biggestPrice();
         // eslint-disable-next-line
         this.props.allOrders.map((order, i) => {
-            if(order.shutter.price < lowestPrice)
+            if(order.price < lowestPrice)
             {
-                lowestPrice = order.shutter.price;
+                lowestPrice = order.price;
             }
         });
         return lowestPrice;
@@ -74,7 +74,7 @@ export class StatisticContainer extends Component {
         var finishedOrders = 0;
         // eslint-disable-next-line
         this.props.allOrders.map((order, i) => {
-            if(order.shutter.isFinished)
+            if(order.isFinished)
             {
                 finishedOrders = finishedOrders + 1;
             }
@@ -86,7 +86,7 @@ export class StatisticContainer extends Component {
         var paidOrders = 0;
         // eslint-disable-next-line
         this.props.allOrders.map((order, i) => {
-            if(order.shutter.isPaid)
+            if(order.isPaid)
             {
                 paidOrders = paidOrders + 1;
             }

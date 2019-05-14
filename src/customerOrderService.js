@@ -59,6 +59,7 @@ CustomerOrderService.prototype.finishOrder = function(orderId, success, error){
 };
 
 CustomerOrderService.prototype.addOrder = function(order, successCallback, errorCallback){
+    logger.info("add order is started");
     order['orderDate'] = new Date().toISOString();
     order['lastModified'] = new Date().toISOString();
     this.customerOrderDAO.addOrder(order, (createdId) => {
@@ -72,7 +73,7 @@ CustomerOrderService.prototype.addOrder = function(order, successCallback, error
 
 CustomerOrderService.prototype.countOrders = function(callback){
     this.customerOrderDAO.listAllOrders((orders) =>{
-        logger.info(`${orders.length} orders were found!`);
+        logger.info(`${orders.length} orders were found! (count orders)`);
         callback(orders.length)
     })
 };

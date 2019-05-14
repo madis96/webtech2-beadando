@@ -56,7 +56,7 @@ render() {
                 <div className="row orderList">
                     <div className="row orderListTitle">
                         <div className="col-md-2 orderListElement">ID</div>
-                        <div className="col-md-3 orderListElement">Shutter sizes (w x h)</div>
+                        <div className="col-md-3 orderListElement">Number of shutters</div>
                         <div className="col-md-3 orderListElement">Ordered</div>
                         <div className="col-md-2 orderListElement">Priority</div>
                         <div className="col-md-2 orderListElement">Finish</div>
@@ -64,11 +64,11 @@ render() {
                     {
                         this.props.orders.map((order, i) =>
                             <div key={i}>
-                            <div className="row orderListElements" onClick={() => this.handleClick(order.id)}>
-                                <div className="col-md-2 orderListElement">{i + 1}</div>
+                            <div className="row orderListElements">
+                                <div className="col-md-2 orderListElement" onClick={() => this.setSelectedOrder(order.id)}>{i + 1}</div>
                                 <div
                                     className="col-md-3 orderListElement">
-                                    {order.shutter.width}mm x {order.shutter.height}mm
+                                    {order.shutter.length}
                                 </div>
                                 <div
                                     className="col-md-3 orderListElement">
@@ -93,15 +93,15 @@ render() {
                                             <div className="informationTitle">Parts informations</div>
                                             <div className="row informationElement">
                                                 <div className="col-md-6">Board:</div>
-                                                <div className="col-md-6">{order.shutter.parts.board}</div>
+                                                <div className="col-md-6">{order.parts.board}</div>
                                             </div>
                                             <div className="row informationElement">
                                                 <div className="col-md-6">Connector:</div>
-                                                <div className="col-md-6">{order.shutter.parts.connector}</div>
+                                                <div className="col-md-6">{order.parts.connector}</div>
                                             </div>
                                             <div className="row informationElement">
                                                 <div className="col-md-6">Rope:</div>
-                                                <div className="col-md-6">{order.shutter.parts.rope}</div>
+                                                <div className="col-md-6">{order.parts.rope}</div>
                                             </div>
                                         </div>
                                     </div>

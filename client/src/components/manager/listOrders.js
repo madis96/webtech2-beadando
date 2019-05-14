@@ -3,6 +3,23 @@ import OrderDataStore from "../../services/OrderDataStore";
 
 export class ListOrders extends Component {
 
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            selectedOrder: 0
+        };
+
+    }
+
+    setSelectedOrder = (orderId) =>{
+        if(orderId === this.state.selectedOrder){
+            this.setState({selectedOrder : 0});
+            return;
+        }
+        this.setState({selectedOrder : orderId});
+    };
+
     checkPrice = (price) =>{
         if(price < 1 || isNaN(price)){
             return false
@@ -57,45 +74,69 @@ export class ListOrders extends Component {
                             <div className="col-md-2 orderListElement">Customer's name</div>
                             <div className="col-md-2 orderListElement">Customer's address</div>
                             <div className="col-md-2 orderListElement">Order date</div>
-                            <div className="col-md-2 orderListElement">Shutter sizes (w x h)</div>
+                            <div className="col-md-2 orderListElement">Number of shutters</div>
                             <div className="col-md-1 orderListElement">Status</div>
                             <div className="col-md-1 orderListElement">Price</div>
                             <div className="col-md-1 orderListElement">Invoice</div>
                         </div>
                         {
                             this.props.orders.map((order, i) =>
-                                <div key={i} className="row orderListElements">
-                                    <div className="col-md-1 orderListElement">{i + 1}</div>
+                                <div key={i}>
+                                <div className="row orderListElements">
+                                    <div className="col-md-1 orderListElement" onClick={() => this.setSelectedOrder(order.id)}>{i + 1}</div>
                                     <div className="col-md-2 orderListElement">{order.customer.name}</div>
                                     <div className="col-md-2 orderListElement">{order.customer.address}</div>
                                     <div className="col-md-2 orderListElement">{this.getDate(order.orderDate)} ({this.calculateDate(order.orderDate)} day(s) ago)</div>
                                     <div
                                         className="col-md-2 orderListElement">
-                                        {order.shutter.width}mm x {order.shutter.height}mm
+                                        {order.shutter.length}
                                         </div>
                                     <div className="col-md-1 orderListElement">
-                                        {order.shutter.isPaid ?
+                                        {order.isPaid ?
                                             "Paid"
-                                            : order.shutter.isFinished ?
+                                            : order.isFinished ?
                                                 "Finished"
                                                 : "Working..."
                                         }
                                     </div>
                                     <div className="col-md-1 orderListElement">
-                                        {order.shutter.price > 0 ?
-                                            this.makePriceFromInt(order.shutter.price)
-                                            : order.shutter.isFinished ?
+                                        {order.price > 0 ?
+                                            this.makePriceFromInt(order.price)
+                                            : order.isFinished ?
                                                 <input type="number" name={"invoice" + order.id} id={"invoice" + order.id}></input>
                                                 : "Not finished"
                                         }</div>
                                     <div className="col-md-1 orderListElement">
-                                        {order.shutter.price > 0 ?
-                                            order.shutter.isPaid ? "Success" : "Waiting"
-                                            : order.shutter.isFinished ?
+                                        {order.price > 0 ?
+                                            order.isPaid ? "Success" : "Waiting"
+                                            : order.isFinished ?
                                                 <button onClick={()=> this.handleClickEvent(order.id)}>Invoice</button>
                                                 : "-"
                                         }
                                     </div>
+                                </div>
+                                    {this.state.selectedOrder === order.id ?
+                                        <div className="row" onClick={() => this.setSelectedOrder(order.id)}>
+                                            <div className="informationContainer">
+                                                <div className="informationTitle">Order informations</div>
+                                                <div className="row informationElements">
+                                                    <div className="col-md-2">ID</div>
+                                                    <div className="col-md-3">sizes</div>
+                                                    <div className="col-md-2">Board: {order.parts.board}</div>
+                                                    <div className="col-md-2">Connector: {order.parts.connector}</div>
+                                                    <div className="col-md-2">Rope: {order.parts.rope}</div>
+                                                </div>
+                                                {order.shutter.map((orders, j) =>
+                                                    <div key={j}>
+                                                        <div className="row informationElements">
+                                                            <div className="col-md-2">{j+1}</div>
+                                                            <div className="col-md-3">{orders.width}mm x {orders.height}mm</div>
+                                                        </div>
+                                                    </div>)}
+                                                </div>
+                                        </div>
+                                        : <div/>
+                                    }
                                 </div>)
                         }
                     </div>

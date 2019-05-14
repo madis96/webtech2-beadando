@@ -24,7 +24,6 @@ export class MainPage extends Component {
                         response.data
                 }))
             })
-
     }
 
     addOrder = (order) => {
@@ -32,10 +31,7 @@ export class MainPage extends Component {
             order: {
                 ...order,
                 customer: order.customer,
-                shutter: {
-                    width: parseInt(order.shutter.width),
-                    height: parseInt(order.shutter.height)
-                }
+                shutters: order.shutters
             }
         };
 

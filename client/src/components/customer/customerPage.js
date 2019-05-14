@@ -15,7 +15,7 @@ export class CustomerPage extends Component {
 
     setCustomer = (customerData) => {
         this.setState({customerData: customerData});
-    }
+    };
 
     render() {
         return (
@@ -24,6 +24,7 @@ export class CustomerPage extends Component {
 
                     <div className="text-center header-text">
                         <h1>You're here as 'CUSTOMER'</h1>
+                        <h2>(Try out 'Kiss Mihály', you will see some orders there)</h2>
                         <h4>You can 'login' and order a new shutter here!</h4>
                         {(this.state.customerData === undefined)
                         ? <div><h6>You're not logged in</h6>

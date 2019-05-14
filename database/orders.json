@@ -7,7 +7,7 @@
 		"name" : "Kiss Mihály",
 		"address" : "8000 Székesfehérvár Középszer utca 10."
 	},
-	"shutter" : {
+	"shutters" : {
 		"width" : 70,
 		"height" : 150,
 		"parts" : {
@@ -121,7 +121,8 @@
 		"name" : "Kiss Mihály",
 		"address" : "8000 Székesfehérvár Középszer utca 12/b"
 	},
-	"shutter" : {
+	"shutters" : [
+	{
 		"width" : 450,
 		"height" : 200,
 		"parts" : {
@@ -131,6 +132,15 @@
 		},
 		"isFinished" : false
 	},
+		{"width" : 450,
+			"height" : 200,
+			"parts" : {
+				"board" : 29,
+				"connector" : 15,
+				"rope" : 10
+			},
+			"isFinished" : false}
+	],
 	"orderDate" : "2019-05-11T15:43:34.211Z",
 	"lastModified": "2019-05-11T15:43:34.211Z"
 }
