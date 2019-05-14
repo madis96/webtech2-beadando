@@ -65,7 +65,7 @@ render() {
                         this.props.orders.map((order, i) =>
                             <div key={i}>
                             <div className="row orderListElements">
-                                <div className="col-md-2 orderListElement" onClick={() => this.setSelectedOrder(order.id)}>{i + 1}</div>
+                                <div className="col-md-2 orderListElement" onClick={() => this.handleClick(order.id)}>{i + 1}</div>
                                 <div
                                     className="col-md-3 orderListElement">
                                     {order.shutter.length}

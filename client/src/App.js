@@ -26,18 +26,12 @@ class App extends Component {
                             <div className="menuButtonTitle"> Customer</div>
                         </NavLink>
                     </div>
-                    <div className="menuButton">
-                    <NavLink to="/cart" activeClassName="active-nav-link">
-                        <div className="menuButtonTitle"> Shopping cart</div>
-                    </NavLink>
-                </div>
                 </div>
                 <div className="authorTile">Mádi Szilárd - BQ1IXF</div>
                 <Route path="/" exact render={() => (<Redirect to='/customer' />)} />
                 <Route path="/customer" component={CustomerPage} />
                 <Route path="/worker" component={WorkerPage} />
                 <Route path="/manager" component={ManagerPage} />
-                <Route path="/cart" component={ListCart} />
             </HashRouter>
         </div>
     );
