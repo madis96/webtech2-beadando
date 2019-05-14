@@ -31,8 +31,6 @@ export class ManagerPage extends Component {
     }
 
     createInvoice = (orderId, value) => {
-        console.log(orderId);
-        console.log(value);
         axios.post("/order/createInvoice", {
             orderId: orderId,
             price: value
