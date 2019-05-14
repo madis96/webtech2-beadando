@@ -11,14 +11,13 @@ export class ManagerPage extends Component {
         super(props);
 
         this.state = {
-            orders: [],
-            allOrders: []
+            orders: []
         };
 
     }
 
     onOrderDataChange = () => {
-        this.setState({allOrders : OrderDataStore._orders.orderData});
+        this.setState({orders : OrderDataStore._orders.orderData});
     };
 
     componentDidMount() {
@@ -60,10 +59,9 @@ export class ManagerPage extends Component {
                         <h1>You're here as 'MANAGER'</h1>
                         <h4>You can make invoice and see all orders here!</h4>
                         <div>
-                            <StatisticContainer allOrders={this.state.allOrders}/>
-                            <ListOrders orders={this.state.allOrders}
+                            <StatisticContainer allOrders={this.state.orders}/>
+                            <ListOrders orders={this.state.orders}
                                         createInvoice={this.createInvoice}
-                                        allOrders={this.state.allOrders}
                             />
                         </div>
                     </div>

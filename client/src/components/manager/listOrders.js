@@ -44,16 +44,12 @@ export class ListOrders extends Component {
 
         return (
             <div>
-                <div className="container">
-                    {
-                        this.props.orders.length === 0 &&
+                {this.props.orders.length === 0 ?
+                    <div className="container">
                         <div className="row">
                             Sorry, no orders yet.
                         </div>
-                    }
-                </div>
-                {this.props.orders.length === 0 ?
-                    <div/>
+                    </div>
                     :
                     <div className="row orderList">
                         <div className="row orderListTitle">
