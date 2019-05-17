@@ -7,18 +7,22 @@
 		"name" : "Kiss Mihály",
 		"address" : "8000 Székesfehérvár Középszer utca 10."
 	},
-	"shutters" : {
+	"shutter" : [{
 		"width" : 70,
-		"height" : 150,
-		"parts" : {
+		"height" : 150
+	},
+    {
+        "width" : 90,
+        "height" : 120
+    }],
+    "parts" : {
 			"board" : 30,
 			"connector" : 15,
 			"rope" : 1
 		},
-		"isFinished" : true,
-		"price": 32500,
-		"isPaid": true
-	},
+	"isFinished" : true,
+	"price": 32500,
+	"isPaid": true,
 	"orderDate" : "2018-02-20T10:52:34.211Z",
 	"lastModified": "2018-03-04T13:12:34.211Z"
 },
@@ -31,18 +35,22 @@
 		"name" : "Nagy Mária",
 		"address" : "3515 Miskolc Kossuth tér 43/a"
 	},
-	"shutter" : {
-		"width" : 90,
-		"height" : 200,
-		"parts" : {
-			"board" : 51,
-			"connector" : 26,
-			"rope" : 2
-		},
-		"isFinished" : true
+	"shutter" : [{
+		"width" : 70,
+		"height" : 150
 	},
-	"orderDate" : "2018-03-21T17:34:12.211Z",
-	"lastModified": "2018-03-30T18:38:44.211Z"
+    {
+        "width" : 90,
+        "height" : 120
+    }],
+    "parts" : {
+			"board" : 30,
+			"connector" : 15,
+			"rope" : 1
+		},
+	"isFinished" : true,
+	"orderDate" : "2018-02-20T10:52:34.211Z",
+	"lastModified": "2018-03-04T13:12:34.211Z"
 },
 {
 	"_id" : {
@@ -53,20 +61,22 @@
 		"name" : "Mező Gábor",
 		"address" : "4000 Debrecen Csapó utca 31"
 	},
-	"shutter" : {
+	"shutter" : [{
 		"width" : 70,
-		"height" : 150,
-		"parts" : {
-			"board" : 51,
-			"connector" : 26,
-			"rope" : 2
-		},
-		"isFinished" : true,
-		"price" : 23550,
-		"isPaid" : false
+		"height" : 150
 	},
-	"orderDate" : "2019-01-12T10:45:34.211Z",
-	"lastModified": "2019-01-21T10:38:44.211Z"
+    {
+        "width" : 90,
+        "height" : 120
+    }],
+    "parts" : {
+			"board" : 30,
+			"connector" : 15,
+			"rope" : 1
+		},
+	"isFinished" : true,
+	"orderDate" : "2018-02-20T10:52:34.211Z",
+	"lastModified": "2018-03-04T13:12:34.211Z"
 },
 {
 	"_id" : {
@@ -77,18 +87,22 @@
 		"name" : "Kaposvári András",
 		"address" : "4000 Debrecen Csapó utca 31"
 	},
-	"shutter" : {
-		"width" : 450,
-		"height" : 200,
-		"parts" : {
-			"board" : 29,
-			"connector" : 15,
-			"rope" : 10
-		},
-		"isFinished" : false
+	"shutter" : [{
+		"width" : 70,
+		"height" : 150
 	},
-	"orderDate" : "2019-04-09T10:52:34.211Z",
-	"lastModified": "2019-04-09T10:52:34.211Z"
+    {
+        "width" : 90,
+        "height" : 120
+    }],
+    "parts" : {
+			"board" : 30,
+			"connector" : 15,
+			"rope" : 1
+		},
+	"isFinished" : false,
+	"orderDate" : "2018-03-10T10:52:34.211Z",
+	"lastModified": "2018-03-10T10:52:34.211Z"
 },
 {
 	"_id" : {
@@ -99,49 +113,20 @@
 		"name" : "Kiss Mihály",
 		"address" : "8000 Székesfehérvár Középszer utca 10."
 	},
-	"shutter" : {
+	"shutter" : [{
 		"width" : 70,
-		"height" : 150,
-		"parts" : {
-			"board" : 51,
-			"connector" : 26,
-			"rope" : 2
-		},
-		"isFinished" : false
+		"height" : 150
 	},
+    {
+        "width" : 90,
+        "height" : 120
+    }],
+    "parts" : {
+			"board" : 30,
+			"connector" : 15,
+			"rope" : 1
+		},
+	"isFinished" : false,
 	"orderDate" : "2019-05-10T15:43:34.211Z",
 	"lastModified": "2019-05-10T15:43:34.211Z"
-},
-{
-	"_id" : {
-		"$oid" : "5cd13f5b8db6231c6b783cb7"
-	},
-	"id" : 6,
-	"customer" : {
-		"name" : "Kiss Mihály",
-		"address" : "8000 Székesfehérvár Középszer utca 12/b"
-	},
-	"shutters" : [
-	{
-		"width" : 450,
-		"height" : 200,
-		"parts" : {
-			"board" : 29,
-			"connector" : 15,
-			"rope" : 10
-		},
-		"isFinished" : false
-	},
-		{"width" : 450,
-			"height" : 200,
-			"parts" : {
-				"board" : 29,
-				"connector" : 15,
-				"rope" : 10
-			},
-			"isFinished" : false}
-	],
-	"orderDate" : "2019-05-11T15:43:34.211Z",
-	"lastModified": "2019-05-11T15:43:34.211Z"
-}
-]
+}]
