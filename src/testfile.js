@@ -1,7 +1,6 @@
 const assert = require('assert');
 const customerModel = require('./models/customer');
 const orderModel = require('./models/order');
-const shutterModel = require('./models/shutter');
 
 describe('Testing models!', () => {
     it('Testing customer model', () => {
@@ -19,15 +18,6 @@ describe('Testing models!', () => {
             assert.fail();
         } catch (error) {
             assert.equal(error, "Error(order): Order is undefined!")
-        }
-    });
-
-    it('Testing shutter model', () => {
-        try {
-            let shutterData = new shutterModel.ShutterFromJson(undefined);
-            assert.fail();
-        } catch (error) {
-            assert.equal(error, "Error(shutter): Shutter is undefined!")
         }
     });
 });
